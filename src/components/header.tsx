@@ -6,7 +6,7 @@ const Header = () => (
     <nav>
       <ul className="flex space-x-4">
         <li><a href="/" className="hover:text-gray-300">Inicio</a></li>
-        <li><a href="/about" className="hover:text-gray-300">Acerca de HOLAAAAAAAA COMPONENTE base</a></li>
+        <li><a href="/about" className="hover:text-gray-300">Acerca de TEST COMPONENTE base</a></li>
         <li><a href="/contact" className="hover:text-gray-300">Contacto</a></li>
       </ul>
     </nav>
