@@ -30,15 +30,13 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-96 bg-cyan-400">
-      <div className="flex overflow-hidden h-96">
+    <div className="relative w-full h-96 bg-cyan-400 overflow-hidden">
+      <div
+        className="flex transition-transform duration-1000 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)`, width: `${images.length * 100}%` }}
+      >
         {images.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute w-full h-full transition-transform duration-1000 ${index === currentIndex ? 'translate-x-0' : 'translate-x-full'
-              }`}
-            style={{ transform: `translateX(${(index - currentIndex) * 100}%)` }}
-          >
+          <div key={index} className="w-full h-full flex-shrink-0">
             <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
           </div>
         ))}
@@ -63,7 +61,6 @@ const Hero: React.FC = () => {
         </svg>
       </button>
 
-
       {/* Texto y botón de llamada a la acción */}
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="text-center">
@@ -77,5 +74,6 @@ const Hero: React.FC = () => {
     </div>
   );
 };
+
 
 export default Hero;
