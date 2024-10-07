@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Header from "@/components/Header";
 
 const categorias = [
   { id: 'agendas', nombre: 'AGENDAS' },

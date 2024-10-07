@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import Header from '@/components/Header';
 
 const productos = [
   { id: 1, nombre: 'CILINDRO METÁLICO', codigo: 'BB7101', imagen: '/api/placeholder/200/200' },

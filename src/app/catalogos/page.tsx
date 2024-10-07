@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import Header from "@/components/Header";
 
 const catalogos = [
   { id: 1, nombre: 'Catálogo General', imagen: '/api/placeholder/300/200' },
