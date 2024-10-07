@@ -1,4 +1,3 @@
-// Hero.tsx
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -9,7 +8,7 @@ const images = [
   "/images/slider3.jpg",
 ];
 
-const Hero: React.FC = () => {
+const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Cambiar automáticamente cada 3 segundos
@@ -74,6 +73,5 @@ const Hero: React.FC = () => {
     </div>
   );
 };
-
 
 export default Hero;

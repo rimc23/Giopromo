@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const productos = [
   { id: 1, nombre: 'CILINDRO METÁLICO', codigo: 'BB7101', imagen: '/api/placeholder/200/200' },
@@ -16,10 +17,12 @@ const Destacados = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {productos.map((producto) => (
-          <div key={producto.id} className="flex flex-col items-center">
-            <img
+          <div key={producto.id} className="text-center">
+            <Image
               src={producto.imagen}
               alt={producto.nombre}
+              width={192}
+              height={192}
               className="mb-2 w-48 h-48 object-cover"
             />
             <h3 className="font-bold text-center">{producto.nombre}</h3>
