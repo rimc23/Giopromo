@@ -1,5 +1,4 @@
-// Hero.tsx
-"use client";
+'use client';
 
 import React, { useState, useEffect } from 'react';
 
@@ -9,30 +8,20 @@ const images = [
   "/images/slider3.jpg",
 ];
 
-const Hero: React.FC = () => {
+const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Cambiar automáticamente cada 3 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(interval); // Limpiar intervalo al desmontar el componente
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
-  // Funciones para cambiar la imagen manualmente
-  const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
-
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
   return (
-    <div className="relative w-full h-96 bg-cyan-400 overflow-hidden">
+    <div className="relative w-full h-64 md:h-96 bg-cyan-400 overflow-hidden">
       <div
-        className="flex transition-transform duration-1000 ease-in-out"
+        className="flex transition-transform duration-1000 ease-in-out h-full"
         style={{ transform: `translateX(-${currentIndex * 100}%)`, width: `${images.length * 100}%` }}
       >
         {images.map((image, index) => (
@@ -41,39 +30,15 @@ const Hero: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* Botones de navegación */}
-      <button
-        onClick={goToPrevious}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-70 text-white p-4 rounded-full shadow-md hover:bg-gray-800 transition duration-300 ease-in-out"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-
-      <button
-        onClick={goToNext}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-700 bg-opacity-70 text-white p-4 rounded-full shadow-md hover:bg-gray-800 transition duration-300 ease-in-out"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      {/* Texto y botón de llamada a la acción */}
-      <div className="absolute inset-0 flex justify-center items-center">
-        <div className="text-center">
-          <h2 className="text-white text-3xl font-bold">ARTÍCULOS PROMOCIONALES A TU ALCANCE</h2>
-          <p className="text-white mt-2">Dedicados a la fabricación, importación y distribución de artículos promocionales con tu branding.</p>
-          <button className="mt-4 bg-white text-blue-500 px-6 py-2 rounded-full shadow-lg">
-            SOLICITA UN PRESUPUESTO
-          </button>
-        </div>
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+        <h2 className="text-white text-2xl md:text-4xl font-bold mb-2 md:mb-4">ARTÍCULOS PROMOCIONALES A TU ALCANCE</h2>
+        <p className="text-white text-sm md:text-base mb-4 md:mb-6">Dedicados a la fabricación, importación y distribución de artículos promocionales con tu branding.</p>
+        <button className="bg-white text-cyan-500 px-6 py-2 rounded-full shadow-lg hover:bg-cyan-100 transition duration-300">
+          SOLICITA UN PRESUPUESTO
+        </button>
       </div>
     </div>
   );
 };
-
 
 export default Hero;
