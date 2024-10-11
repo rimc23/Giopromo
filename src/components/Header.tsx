@@ -90,7 +90,7 @@ const Header = () => {
                         <li><Link href="/" className="text-gray-600 hover:text-cyan-400">INICIO</Link></li>
                         <li><Link href="/nosotros" className="text-gray-600 hover:text-cyan-400">NOSOTROS</Link></li>
                         <li><Link href="/catalogos" className="text-gray-600 hover:text-cyan-400">CATÁLOGOS</Link></li>
-                        <li><Link href="/productos" className="text-gray-600 hover:text-cyan-400">PRODUCTOS</Link></li>
+                        <li><Link href="/productos" className="text-gray-600 hover:text-cyan-400">TÉCNICAS</Link></li>
                         <li><Link href="/contacto" className="text-gray-600 hover:text-cyan-400">CONTACTO</Link></li>
                         <li className="relative">
                             <button
