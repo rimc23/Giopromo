@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Giopromo",
-  description: "Giopromo Site",
+  title: "Gi promo",
+  description: "Gi promo Site",
 };
 
 export default function RootLayout({
