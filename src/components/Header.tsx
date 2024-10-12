@@ -52,10 +52,10 @@ const Header = () => {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-6">
           {/* Logo */}
-          <div className="w-24 h-24">
-            <div className="w-24 h-24 relative">
+         
+            <div className="w-20 h-20 relative pt-2">
               <Image
                 src="/logo.svg"
                 alt="Company Logo"
@@ -63,7 +63,7 @@ const Header = () => {
                 objectFit="contain"
               />
             </div>
-          </div>
+  
 
           {/* Menú hamburguesa para móviles */}
           <button
