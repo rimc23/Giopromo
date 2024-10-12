@@ -1,23 +1,24 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Lato } from "next/font/google";
 import "./globals.css";
-
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Gi promo",
-  description: "Gi promo Site",
-};
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "700", "900"],
+  variable: "--font-lato",
+});
 
 export default function RootLayout({
   children,
@@ -25,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lato.variable} font-sans antialiased bg-background text-foreground`}
       >
-        {children}
+        <main className="flex-grow">{children}</main>
       </body>
     </html>
   );
