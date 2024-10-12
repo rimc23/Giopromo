@@ -54,8 +54,8 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
-         
-            <div className="w-20 h-20 relative pt-2">
+          <Link href="/">
+            <div className="w-20 h-20 relative pt-2 cursor-pointer">
               <Image
                 src="/logo.svg"
                 alt="Company Logo"
@@ -63,12 +63,13 @@ const Header = () => {
                 objectFit="contain"
               />
             </div>
-  
+          </Link>
 
           {/* Menú hamburguesa para móviles */}
           <button
             className="md:hidden text-gray-600"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
           >
             {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
@@ -78,7 +79,7 @@ const Header = () => {
             <div className="flex space-x-5 ml-auto">
               <div className="flex space-x-2 items-center">
                 <FaPhoneAlt className="text-cyan-500" />
-                <div className="flex flex-col min-w-[84px] sm:min-w-[84px] md:min-w-[84px]">
+                <div className="flex flex-col min-w-[84px]">
                   <p className="text-sm text-gray-600">33 2003 0058</p>
                   <p className="text-sm text-gray-600">33 2003 0059</p>
                 </div>
@@ -145,6 +146,8 @@ const Header = () => {
               <button
                 className="text-gray-600 hover:text-cyan-400 flex items-center"
                 onClick={() => setCategoriasOpen(!categoriasOpen)}
+                aria-expanded={categoriasOpen}
+                aria-label="Abrir categorías"
               >
                 CATEGORÍAS <FaChevronDown className="ml-1" />
               </button>
