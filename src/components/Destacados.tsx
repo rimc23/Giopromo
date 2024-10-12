@@ -55,7 +55,7 @@ const Destacados = () => {
   return (
     <section className="my-12 max-w-7xl mx-auto px-4">
       <h1 className="text-lg md:text-xl lg:text-2xl text-gray-700 font-light leading-relaxed mb-8 max-w-4xl mx-auto text-center">
-        Ofrecemos más de 10,000 artículos promocionales, adaptados a todo tipo
+        Ofrecemos más de <span className="font-bold">10,000 </span>artículos promocionales, adaptados a todo tipo
         de clientes, proyectos y presupuestos. Garantizamos una atención
         personalizada y entregas puntuales, asegurando la satisfacción de
         nuestros clientes en cada solicitud.
