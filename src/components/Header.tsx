@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import React, { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import {
     FaPhoneAlt,
@@ -14,39 +14,12 @@ import {
     FaShoppingCart,
     FaBars,
     FaTimes,
-    FaChevronDown,
     FaYoutube
 } from "react-icons/fa";
+import Categories from '../components/navigation/Categories';
 
-const categorias = [
-    { id: 'agendas', nombre: 'AGENDAS' },
-    { id: 'antiestres', nombre: 'ANTIESTRES' },
-    { id: 'audio', nombre: 'AUDIO Y BOCINAS' },
-    { id: 'bar', nombre: 'BAR' },
-    { id: 'belleza', nombre: 'BELLEZA Y CUIDADO PERSONAL' },
-    { id: 'boligrafos', nombre: 'BOLÍGRAFOS' },
-    { id: 'bolsas', nombre: 'BOLSAS' },
-    { id: 'camisas', nombre: 'CAMISAS Y PLAYERAS' },
-];
-
-const Header: React.FC = () => {
+const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [categoriasOpen, setCategoriasOpen] = useState(false);
-    const menuRef = useRef<HTMLLIElement>(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-                setCategoriasOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [menuRef]);
 
     return (
         <header className="bg-white shadow-md">
@@ -111,27 +84,7 @@ const Header: React.FC = () => {
                         <li><Link href="/catalogos" className="text-gray-600 hover:text-cyan-400">CATÁLOGOS</Link></li>
                         <li><Link href="/productos" className="text-gray-600 hover:text-cyan-400">PRODUCTOS</Link></li>
                         <li><Link href="/contacto" className="text-gray-600 hover:text-cyan-400">CONTACTO</Link></li>
-                        <li className="relative" ref={menuRef}>
-                            <button
-                                className="text-gray-600 hover:text-cyan-400 flex items-center"
-                                onClick={() => setCategoriasOpen(!categoriasOpen)}
-                            >
-                                CATEGORÍAS <FaChevronDown className="ml-1" />
-                            </button>
-                            {categoriasOpen && (
-                                <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
-                                    {categorias.map((categoria) => (
-                                        <Link
-                                            key={categoria.id}
-                                            href={`/categorias/${categoria.id}`}
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-[rgba(191,255,0,0.7)]"
-                                        >
-                                            {categoria.nombre}
-                                        </Link>
-                                    ))}
-                                </div>
-                            )}
-                        </li>
+                        <Categories />
                     </ul>
                     <div className="mt-4 md:mt-0 flex items-center">
                         <div className="relative flex-grow mr-4 w-[300px]">
