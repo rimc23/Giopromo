@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     FaPhoneAlt,
     FaEnvelope,
@@ -13,7 +13,7 @@ import {
     FaShoppingCart,
     FaBars,
     FaTimes,
-    FaChevronDown, 
+    FaChevronDown,
     FaYoutube
 } from "react-icons/fa";
 
@@ -31,23 +31,42 @@ const categorias = [
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [categoriasOpen, setCategoriasOpen] = useState(false);
+    const menuRef = useRef(null);
+
+    // Manejo de clics fuera del menú desplegable
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setCategoriasOpen(false);  // Cierra el menú si se hace clic fuera
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [menuRef]);
 
     return (
         <header className="bg-white shadow-md">
             {/* Barra superior */}
             <div className="bg-black text-white px-4 py-2 text-xs sm:text-sm lg:px-16">
-                <div className="container mx-auto flex justify-between items-center">
-                    <p className="hidden sm:block">
-                        Fabricación, importación y distribución de artículos promocionales personalizados
-                    </p>
-                    <div className="flex space-x-4">
-                        <FaYoutube className="hover:text-red-600 cursor-pointer" />
-                        <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
-                        <FaInstagram className="hover:text-pink-500 cursor-pointer" />
-                        <FaWhatsapp className="hover:text-green-500 cursor-pointer" />
-                    </div>
-                </div>
-            </div>
+    <div className="container mx-auto flex justify-end sm:justify-between items-center">
+        <p className="hidden sm:block">
+            Fabricación, importación y distribución de artículos promocionales personalizados
+        </p>
+
+        <div className="flex space-x-4">
+            <p className="pr-2">Whatsapp 33 3156 9962</p>
+            <FaYoutube className="hover:text-red-600 cursor-pointer" />
+            <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
+            <FaInstagram className="hover:text-pink-500 cursor-pointer" />
+            <FaWhatsapp className="text-green-500 cursor-pointer" />
+        </div>
+    </div>
+</div>
+
 
             <div className="container mx-auto px-4 lg:px-8">
                 <div className="flex justify-between items-center py-4">
@@ -92,7 +111,7 @@ const Header = () => {
                         <li><Link href="/catalogos" className="text-gray-600 hover:text-cyan-400">CATÁLOGOS</Link></li>
                         <li><Link href="/productos" className="text-gray-600 hover:text-cyan-400">PRODUCTOS</Link></li>
                         <li><Link href="/contacto" className="text-gray-600 hover:text-cyan-400">CONTACTO</Link></li>
-                        <li className="relative">
+                        <li className="relative" ref={menuRef}>
                             <button
                                 className="text-gray-600 hover:text-cyan-400 flex items-center"
                                 onClick={() => setCategoriasOpen(!categoriasOpen)}
@@ -105,7 +124,7 @@ const Header = () => {
                                         <Link
                                             key={categoria.id}
                                             href={`/categorias/${categoria.id}`}
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-[rgba(191,255,0,0.7)]"
                                         >
                                             {categoria.nombre}
                                         </Link>
@@ -132,4 +151,3 @@ const Header = () => {
 };
 
 export default Header;
-

@@ -54,32 +54,30 @@ const Destacados = () => {
 
   return (
     <section className="my-12 max-w-7xl mx-auto px-4">
-      <h1 className="text-lg md:text-xl lg:text-2xl text-gray-700 font-light leading-relaxed mb-8 max-w-4xl mx-auto text-center">
-        Ofrecemos más de 10,000 artículos promocionales, adaptados a todo tipo
+      <h1 className="text-lg md:text-xl lg:text-2xl text-gray-500 font-light leading-relaxed mb-8 max-w-4xl mx-auto text-center pt-5">
+        Ofrecemos más de <span className="font-bold">10,000 artículos promocionales</span>, adaptados a todo tipo
         de clientes, proyectos y presupuestos. Garantizamos una atención
-        personalizada y entregas puntuales, asegurando la satisfacción de
-        nuestros clientes en cada solicitud.
+        personalizada y entregas puntuales, asegurando <span className="font-bold">la satisfacción de
+        nuestros clientes en cada solicitud</span>.
       </h1>
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center pt-8">
         Nuestros artículos promocionales destacados
       </h2>
       <div className="flex justify-center mb-8">
         <button
-          className={`mr-4 font-bold pb-2 ${
-            activeTab === "destacados"
+          className={`mr-4 font-bold pb-2 ${activeTab === "destacados"
               ? "text-cyan-500 border-b-2 border-cyan-500"
               : "text-gray-500"
-          }`}
+            }`}
           onClick={() => setActiveTab("destacados")}
         >
           DESTACADOS
         </button>
         <button
-          className={`font-bold pb-2 ${
-            activeTab === "masVendidos"
+          className={`font-bold pb-2 ${activeTab === "masVendidos"
               ? "text-cyan-500 border-b-2 border-cyan-500"
               : "text-gray-500"
-          }`}
+            }`}
           onClick={() => setActiveTab("masVendidos")}
         >
           MÁS VENDIDOS
