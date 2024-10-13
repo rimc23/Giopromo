@@ -57,9 +57,15 @@ const Hero = () => {
             </div>
           )}
           <div className="flex justify-center">
-            <button className="bg-white text-cyan-600 px-8 py-3 text-lg font-semibold hover:bg-cyan-100 transition-colors">
-              SOLICITA UN PRESUPUESTO
-            </button>
+            {currentIndex === 0 ? (
+              <button className="bg-white text-cyan-600 px-8 py-3 text-lg font-semibold hover:bg-cyan-100 transition-colors">
+                SOLICITA UN PRESUPUESTO
+              </button>
+            ) : (
+              <button className="bg-cyan-500 text-white px-8 py-3 text-lg font-semibold hover:bg-cyan-600 transition-colors">
+                VER PRODUCTOS
+              </button>
+            )}
           </div>
         </div>
       </div>
