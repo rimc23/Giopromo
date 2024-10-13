@@ -12,12 +12,12 @@ const productos = [
   { id: 6, nombre: 'USB PERSONALIZADO', codigo: 'US8016', imagen: '/api/placeholder/200/200' },
 ];
 
-const ProductosPage = () => {
+const TecnicasPage = () => {
   return (
     <>
       <Header />
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-4">Nuestros Productos</h1>
+        <h1 className="text-3xl font-bold mb-4">Nuestras Tecnicas</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {productos.map((producto) => (
             <div key={producto.id} className="producto-item">
@@ -38,4 +38,4 @@ const ProductosPage = () => {
   );
 };
 
-export default ProductosPage;
+export default TecnicasPage;
