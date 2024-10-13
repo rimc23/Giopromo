@@ -71,7 +71,7 @@ const Header = () => {
                             </div>
                             <div className="flex space-x-2 items-center">
                                 <FaMapMarkerAlt className="text-cyan-500" />
-                                <p className="text-sm text-gray-600 w-[150px]">Antonio Correa #2025, La Guadalupana, 44220</p>
+                                <p className="text-sm text-gray-600 w-[160px]">Antonio Correa #2025, La Guadalupana, 44220</p>
                             </div>
                         </div>
                     </div>
