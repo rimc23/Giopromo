@@ -47,6 +47,14 @@ const Categories = () => {
     const [categoriasOpen, setCategoriasOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
+    const handleMouseEnter = () => {
+        setCategoriasOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        setCategoriasOpen(false);
+    };
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -62,16 +70,29 @@ const Categories = () => {
     }, [menuRef]);
 
     return (
-        <div className="relative" ref={menuRef}>
+        <div 
+            className="relative" 
+            ref={menuRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             <button
-                className="text-gray-600 hover:text-cyan-400 flex items-center"
+                className={`
+                    group flex items-center justify-center px-4 py-2 text-gray-700
+                    transition-colors duration-300 ease-in-out
+                    ${categoriasOpen ? 'bg-gray-700 text-white' : 'hover:bg-gray-700 hover:text-white'}
+                `}
                 onClick={() => setCategoriasOpen(!categoriasOpen)}
                 aria-expanded={categoriasOpen}
             >
-                CATEGORÍAS <FaChevronDown className="ml-1" />
+                CATEGORÍAS 
+                <FaChevronDown className={`
+                    ml-2 transition-transform duration-300
+                    ${categoriasOpen ? 'rotate-180' : 'group-hover:rotate-180'}
+                `} />
             </button>
             {categoriasOpen && (
-                <div className="absolute z-10 mt-2 w-full sm:w-[600px] md:w-[800px] lg:w-[1000px] bg-white rounded-md shadow-lg p-4 left-0 sm:left-1/2 transform sm:-translate-x-1/2">
+                <div className="absolute z-10 mt-0 w-full sm:w-[600px] md:w-[800px] lg:w-[1000px] bg-white rounded-b-md shadow-lg p-4 left-0 sm:left-1/2 transform sm:-translate-x-1/2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0">
                         {categorias.map((categoria, index) => (
                             <Link
@@ -79,7 +100,7 @@ const Categories = () => {
                                 href={`/categorias/${categoria.id}`}
                                 className={`
                                     flex items-center space-x-2 text-xs sm:text-sm text-gray-700 
-                                    hover:bg-[rgba(191,255,0,0.7)] p-2
+                                    hover:bg-[rgba(191,255,0,0.7)] p-2 transition-colors duration-300
                                     ${index % 5 !== 4 ? 'border-r border-gray-200' : ''}
                                 `}
                             >
