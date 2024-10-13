@@ -90,7 +90,7 @@ const Destacados: React.FC = () => {
                         )}
                         {hoveredProduct === producto.id && (
                             <>
-                                <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300 mb-2 w-full">
+                                <button className="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 transition duration-300 mb-2 w-full">
                                     SELECCIONAR OPCIONES
                                 </button>
                                 <button className="bg-gray-200 text-gray-700 p-2 rounded-full hover:bg-gray-300 transition duration-300">
