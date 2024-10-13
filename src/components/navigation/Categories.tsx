@@ -2,27 +2,50 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaChevronDown } from 'react-icons/fa';
 
 interface Categoria {
     id: string;
     nombre: string;
+    icon: string;
 }
 
 const categorias: Categoria[] = [
-    { id: 'agendas', nombre: 'AGENDAS' },
-    { id: 'antiestres', nombre: 'ANTIESTRES' },
-    { id: 'audio', nombre: 'AUDIO Y BOCINAS' },
-    { id: 'bar', nombre: 'BAR' },
-    { id: 'belleza', nombre: 'BELLEZA Y CUIDADO PERSONAL' },
-    { id: 'boligrafos', nombre: 'BOLÍGRAFOS' },
-    { id: 'bolsas', nombre: 'BOLSAS' },
-    { id: 'camisas', nombre: 'CAMISAS Y PLAYERAS' },
+    { id: 'agendas', nombre: 'AGENDAS', icon: '/icons/agendas.svg' },
+    { id: 'antiestres', nombre: 'ANTIESTRES', icon: '/icons/antiestres.svg' },
+    { id: 'audio-y-bocinas', nombre: 'AUDIO Y BOCINAS', icon: '/icons/audioybocinas.svg' },
+    { id: 'bar', nombre: 'BAR', icon: '/icons/bar.svg' },
+    { id: 'belleza-y-cuidado', nombre: 'BELLEZA Y CUIDADO PERSONAL', icon: '/icons/belleza y cuidado.svg' },
+    { id: 'boligrafos', nombre: 'BOLÍGRAFOS', icon: '/icons/boligrafos.svg' },
+    { id: 'bolsas', nombre: 'BOLSAS', icon: '/icons/bolsas.svg' },
+    { id: 'camisas', nombre: 'CAMISAS Y PLAYERAS', icon: '/icons/camisas.svg' },
+    { id: 'cilindros', nombre: 'CILINDROS', icon: '/icons/cilindros.svg' },
+    { id: 'deportes', nombre: 'DEPORTES', icon: '/icons/deportes.svg' },
+    { id: 'entretenimiento', nombre: 'ENTRETENIMIENTO', icon: '/icons/entretenimiento.svg' },
+    { id: 'escolar', nombre: 'ESCOLAR Y NIÑOS', icon: '/icons/escolar y niños.svg' },
+    { id: 'gorras', nombre: 'GORRAS', icon: '/icons/gorras.svg' },
+    { id: 'herramientas', nombre: 'HERRAMIENTAS Y AUTOMOVIL', icon: '/icons/herramientas y automovil.svg' },
+    { id: 'hieleras', nombre: 'HIELERAS Y LONCHERAS', icon: '/icons/hieleras.svg' },
+    { id: 'hogar', nombre: 'HOGAR', icon: '/icons/hogar.svg' },
+    { id: 'libretas', nombre: 'LIBRETAS', icon: '/icons/libretas.svg' },
+    { id: 'llaveros', nombre: 'LLAVEROS', icon: '/icons/llaveros.svg' },
+    { id: 'maletas', nombre: 'MALETAS', icon: '/icons/maletas.svg' },
+    { id: 'mochilas', nombre: 'MOCHILAS', icon: '/icons/mochilas.svg' },
+    { id: 'oficina', nombre: 'OFICINA', icon: '/icons/oficina.svg' },
+    { id: 'paraguas', nombre: 'PARAGUAS E IMPERMEABLES', icon: '/icons/paraguas.svg' },
+    { id: 'portaretratos', nombre: 'PORTARETRATOS', icon: '/icons/portaretratos.svg' },
+    { id: 'reconocimientos', nombre: 'RECONOCIMIENTOS', icon: '/icons/reconocimientos.svg' },
+    { id: 'relojes', nombre: 'RELOJES', icon: '/icons/relojes.svg' },
+    { id: 'salud', nombre: 'SALUD', icon: '/icons/salud.svg' },
+    { id: 'tecnologia', nombre: 'TECNOLOGÍA', icon: '/icons/tecnologia.svg' },
+    { id: 'termos', nombre: 'TERMOS TAZAS Y VASOS', icon: '/icons/termos y tazas.svg' },
+    { id: 'viaje', nombre: 'VIAJE', icon: '/icons/viajes.svg' },
 ];
 
 const Categories = () => {
     const [categoriasOpen, setCategoriasOpen] = useState(false);
-    const menuRef = useRef<HTMLLIElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -39,27 +62,35 @@ const Categories = () => {
     }, [menuRef]);
 
     return (
-        <li className="relative" ref={menuRef}>
+        <div className="relative" ref={menuRef}>
             <button
                 className="text-gray-600 hover:text-cyan-400 flex items-center"
                 onClick={() => setCategoriasOpen(!categoriasOpen)}
+                aria-expanded={categoriasOpen}
             >
                 CATEGORÍAS <FaChevronDown className="ml-1" />
             </button>
             {categoriasOpen && (
-                <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
-                    {categorias.map((categoria) => (
-                        <Link
-                            key={categoria.id}
-                            href={`/categorias/${categoria.id}`}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-[rgba(191,255,0,0.7)]"
-                        >
-                            {categoria.nombre}
-                        </Link>
-                    ))}
+                <div className="absolute z-10 mt-2 w-full sm:w-[600px] md:w-[800px] lg:w-[1000px] bg-white rounded-md shadow-lg p-4 left-0 sm:left-1/2 transform sm:-translate-x-1/2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0">
+                        {categorias.map((categoria, index) => (
+                            <Link
+                                key={categoria.id}
+                                href={`/categorias/${categoria.id}`}
+                                className={`
+                                    flex items-center space-x-2 text-xs sm:text-sm text-gray-700 
+                                    hover:bg-[rgba(191,255,0,0.7)] p-2
+                                    ${index % 5 !== 4 ? 'border-r border-gray-200' : ''}
+                                `}
+                            >
+                                <Image src={categoria.icon} alt={categoria.nombre} width={20} height={20} />
+                                <span className="truncate">{categoria.nombre}</span>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             )}
-        </li>
+        </div>
     );
 };
 
