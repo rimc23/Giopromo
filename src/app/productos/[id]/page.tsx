@@ -103,7 +103,7 @@ const ProductoDetalle = () => {
                   producto.colores.map((color) => (
                     <button
                       key={color.toString()}
-                      className={`w-8 h-8 rounded-full border-2 border-gray-300 ${colorMap[color]}`}
+                      className={`w-8 h-8 rounded-full border-2 border-gray-300 ${colorMap[color as unknown as string]}`}
                       aria-label={`Seleccionar color ${color}`}
                     />
                   ))}
