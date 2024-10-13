@@ -5,15 +5,14 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaYoutube, FaFacebo
 const Footer = () => {
   return (
     <>
-      <div className="w-full h-[2px] bg-cyan-400"></div>
+      <div className="w-full h-[2px]"></div>
       <footer className="bg-gray-100 text-gray-700">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="w-20 md:w-30 mb-4 md:mb-0 flex items-start">
-            <Image src="/logo.svg" alt="Company Logo" width={60} height={60} />
+          <Image src="/logo.svg" alt="Company Logo" width={60} height={60} />
           </div>
             <div className="flex md:w-1/2 mb-4 md:mb-0">
-              <div className="bg-gray-300 w-20 h-20 mb-4"></div>
               <div>
                 <h2 className="text-xl font-bold text-gray-800 mb-2">ARTÍCULOS PROMOCIONALES EN TODO MÉXICO</h2>
                 <p className="mb-2 text-sm">Grupo GiPromo es una empresa mexicana que se dedica a la fabricación, importación y distribución de artículos promocionales. Desde nuestra apertura buscamos la excelencia en nuestros productos y procesos, para brindar la mejor experiencia a nuestros clientes.</p>
