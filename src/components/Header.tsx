@@ -28,12 +28,26 @@ const Header = () => {
                     <p className="hidden sm:block">
                         Fabricación, importación y distribución de artículos promocionales personalizados
                     </p>
-                    <div className="flex space-x-4">
-                        <p className="pr-2">Whatsapp 33 3156 9962</p>
+                    <div className="flex space-x-4 items-center">
+                        <a 
+                            href="https://wa.me/523331569962" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="pr-2 hover:text-green-500 transition-colors duration-300"
+                        >
+                            Whatsapp 33 3156 9962
+                        </a>
                         <FaYoutube className="hover:text-red-600 cursor-pointer" />
                         <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
                         <FaInstagram className="hover:text-pink-500 cursor-pointer" />
-                        <FaWhatsapp className="text-green-500 cursor-pointer" />
+                        <a 
+                            href="https://wa.me/523331569962" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            aria-label="Chatear por WhatsApp"
+                        >
+                            <FaWhatsapp className="text-green-500 hover:text-green-600 cursor-pointer" />
+                        </a>
                     </div>
                 </div>
             </div>
