@@ -78,13 +78,13 @@ const Header = () => {
                 </div>
 
                 <nav className={`${menuOpen ? 'block' : 'hidden'} md:flex justify-between items-center py-4`}>
-                    <ul className="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0">
+                    <ul className="flex flex-col md:flex-row md:items-center md:space-x-6 space-y-2 md:space-y-0">
                         <li><Link href="/" className="text-gray-600 hover:text-cyan-400">INICIO</Link></li>
                         <li><Link href="/nosotros" className="text-gray-600 hover:text-cyan-400">NOSOTROS</Link></li>
                         <li><Link href="/catalogos" className="text-gray-600 hover:text-cyan-400">CATÁLOGOS</Link></li>
-                        <li><Link href="/productos" className="text-gray-600 hover:text-cyan-400">TÉCNICAS</Link></li>
+                        <li><Link href="/tecnicas" className="text-gray-600 hover:text-cyan-400">TÉCNICAS</Link></li>
                         <li><Link href="/contacto" className="text-gray-600 hover:text-cyan-400">CONTACTO</Link></li>
-                        <Categories />
+                        <li className="md:ml-4"><Categories /></li>
                     </ul>
                     <div className="mt-4 md:mt-0 flex items-center">
                         <div className="relative flex-grow mr-4 w-[300px]">
