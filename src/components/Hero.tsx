@@ -1,7 +1,7 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-// import { FaChevronLeft } from 'react-icons/fa'; 
 
 const images = [
   "/banners/GiPromo_banner.jpg",
@@ -50,15 +50,17 @@ const Hero = () => {
         <div className="pt-8">
         </div>
         <div className="container mx-auto px-4 pb-8">
-          <div className="max-w-2xl text-white">
-            <h2 className="text-4xl font-bold mb-2">ARTÍCULOS PROMOCIONALES A TU ALCANCE</h2>
-            <p className="text-xl mb-8">Dedicados a la fabricación, importación y distribución de artículos promocionales con tu branding al alcance de tus usuarios.</p>
-          </div>
-            <div className="flex justify-center">
-              <button className="bg-white text-cyan-600 px-8 py-3 text-lg font-semibold hover:bg-cyan-100 transition-colors">
-                SOLICITA UN PRESUPUESTO
-              </button>
+          {currentIndex === 0 && (
+            <div className="max-w-2xl text-white mb-8">
+              <h2 className="text-4xl font-bold mb-2">ARTÍCULOS PROMOCIONALES A TU ALCANCE</h2>
+              <p className="text-xl">Dedicados a la fabricación, importación y distribución de artículos promocionales con tu branding al alcance de tus usuarios.</p>
             </div>
+          )}
+          <div className="flex justify-center">
+            <button className="bg-white text-cyan-600 px-8 py-3 text-lg font-semibold hover:bg-cyan-100 transition-colors">
+              SOLICITA UN PRESUPUESTO
+            </button>
+          </div>
         </div>
       </div>
       <button
