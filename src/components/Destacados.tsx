@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link"; // Importar Link de Next.js para la navegación
+
 
 interface Producto {
   id: number;
@@ -11,13 +13,13 @@ interface Producto {
   colores?: string[];
 }
 
-const productosDestacados: Producto[] = [
+export const productosDestacados: Producto[] = [
   {
     id: 1,
     nombre: "CILINDRO METÁLICO",
     codigo: "BB7101",
     imagen: "/images/CILINDRO DESTACADO.jpg",
-    colores: ["black", "gray-500"],
+    colores: ["black", "gray-500", "blue-500", "red-500"], // Agregar más colores
   },
   {
     id: 2,
@@ -31,6 +33,7 @@ const productosDestacados: Producto[] = [
       "orange-500",
       "pink-500",
       "green-500",
+      "red-500", // Agregar más colores
     ],
   },
   {
@@ -38,6 +41,7 @@ const productosDestacados: Producto[] = [
     nombre: "DIARIO 2023",
     codigo: "AD2023",
     imagen: "/images/Diaria 2023.jpeg",
+    colores: ["brown", "gray-300", "black"], // Añadir colores
   },
 ];
 
@@ -79,43 +83,39 @@ const Destacados = () => {
       </div>
       <div className="flex justify-center items-stretch gap-8 flex-wrap">
         {productosDestacados.map((producto) => (
-          <div
-            key={producto.id}
-            className={`relative flex flex-col items-center w-64 p-4 transition-all duration-300 ${
-              hoveredProduct === producto.id ? "bg-white shadow-lg" : ""
-            }`}
-            onMouseEnter={() => setHoveredProduct(producto.id)}
-            onMouseLeave={() => setHoveredProduct(null)}
-          >
-            <div className="mb-4 w-full h-64 relative">
-              <Image
-                src={producto.imagen}
-                alt={producto.nombre}
-                layout="fill"
-                objectFit="contain"
-                className="rounded-lg"
-              />
-            </div>
-            <h3 className="font-bold text-lg text-center mb-1">
-              {producto.nombre}
-            </h3>
-            <p className="text-gray-500 mb-4">Clave: {producto.codigo}</p>
-            {hoveredProduct === producto.id && producto.colores && (
-              <div className="flex justify-center mb-4">
-                {producto.colores.map((color) => (
-                  <span
-                    key={color}
-                    className={`w-4 h-4 rounded-full bg-${color} mx-1`}
-                  ></span>
-                ))}
+          <Link href={`/productos/${producto.codigo}`} key={producto.id} passHref>
+            <div
+              className={`relative flex flex-col items-center w-64 p-4 transition-all duration-300 cursor-pointer ${
+                hoveredProduct === producto.id ? "bg-white shadow-lg" : ""
+              }`}
+              onMouseEnter={() => setHoveredProduct(producto.id)}
+              onMouseLeave={() => setHoveredProduct(null)}
+            >
+              <div className="mb-4 w-full h-64 relative">
+                <Image
+                  src={producto.imagen}
+                  alt={producto.nombre}
+                  layout="fill"
+                  objectFit="contain"
+                  className="rounded-lg"
+                />
               </div>
-            )}
-            {hoveredProduct === producto.id && (
-              <button className="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 transition duration-300 mb-2 w-full">
-                SELECCIONAR OPCIONES
-              </button>
-            )}
-          </div>
+              <h3 className="font-bold text-lg text-center mb-1">
+                {producto.nombre}
+              </h3>
+              <p className="text-gray-500 mb-4">Clave: {producto.codigo}</p>
+              {hoveredProduct === producto.id && producto.colores && (
+                <div className="flex justify-center mb-4">
+                  {producto.colores.map((color) => (
+                    <span
+                      key={color}
+                      className={`w-4 h-4 rounded-full bg-${color} mx-1`}
+                    ></span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </Link>
         ))}
       </div>
     </section>
