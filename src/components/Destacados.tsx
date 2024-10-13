@@ -1,16 +1,19 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; // Importar Link de Next.js para la navegación
+import Link from "next/link";
 
+interface Color {
+  name: string;
+  class: string;
+}
 
 interface Producto {
   id: number;
   nombre: string;
   codigo: string;
   imagen: string;
-  colores?: string[];
+  colores?: Color[];
 }
 
 export const productosDestacados: Producto[] = [
@@ -19,7 +22,12 @@ export const productosDestacados: Producto[] = [
     nombre: "CILINDRO METÁLICO",
     codigo: "BB7101",
     imagen: "/images/CILINDRO DESTACADO.jpg",
-    colores: ["black", "gray-500", "blue-500", "red-500"], // Agregar más colores
+    colores: [
+      { name: "Negro", class: "bg-black" },
+      { name: "Gris", class: "bg-gray-500" },
+      { name: "Azul", class: "bg-blue-500" },
+      { name: "Rojo", class: "bg-red-500" },
+    ],
   },
   {
     id: 2,
@@ -27,13 +35,13 @@ export const productosDestacados: Producto[] = [
     codigo: "A2102",
     imagen: "/images/BOLIGRAFO NARANJA.jpg",
     colores: [
-      "yellow-500",
-      "blue-500",
-      "black",
-      "orange-500",
-      "pink-500",
-      "green-500",
-      "red-500", // Agregar más colores
+      { name: "Amarillo", class: "bg-yellow-500" },
+      { name: "Azul", class: "bg-blue-500" },
+      { name: "Negro", class: "bg-black" },
+      { name: "Naranja", class: "bg-orange-500" },
+      { name: "Rosa", class: "bg-pink-500" },
+      { name: "Verde", class: "bg-green-500" },
+      { name: "Rojo", class: "bg-red-500" },
     ],
   },
   {
@@ -41,7 +49,11 @@ export const productosDestacados: Producto[] = [
     nombre: "DIARIO 2023",
     codigo: "AD2023",
     imagen: "/images/Diaria 2023.jpeg",
-    colores: ["brown", "gray-300", "black"], // Añadir colores
+    colores: [
+      { name: "Marrón", class: "bg-amber-800" },
+      { name: "Gris", class: "bg-gray-300" },
+      { name: "Negro", class: "bg-black" },
+    ],
   },
 ];
 
@@ -50,6 +62,13 @@ const Destacados = () => {
     "novedades" | "destacados" | "masVendidos"
   >("destacados");
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+  const [selectedColors, setSelectedColors] = useState<{ [key: number]: string }>(
+    {}
+  );
+
+  const handleColorSelect = (productId: number, colorName: string) => {
+    setSelectedColors((prev) => ({ ...prev, [productId]: colorName }));
+  };
 
   return (
     <section className="my-12 max-w-7xl mx-auto px-4">
@@ -83,7 +102,11 @@ const Destacados = () => {
       </div>
       <div className="flex justify-center items-stretch gap-8 flex-wrap">
         {productosDestacados.map((producto) => (
-          <Link href={`/productos/${producto.codigo}`} key={producto.id} passHref>
+          <Link
+            href={`/productos/${producto.codigo}`}
+            key={producto.id}
+            passHref
+          >
             <div
               className={`relative flex flex-col items-center w-64 p-4 transition-all duration-300 cursor-pointer ${
                 hoveredProduct === producto.id ? "bg-white shadow-lg" : ""
@@ -105,12 +128,30 @@ const Destacados = () => {
               </h3>
               <p className="text-gray-500 mb-4">Clave: {producto.codigo}</p>
               {hoveredProduct === producto.id && producto.colores && (
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-4 flex-wrap">
                   {producto.colores.map((color) => (
-                    <span
-                      key={color}
-                      className={`w-4 h-4 rounded-full bg-${color} mx-1`}
-                    ></span>
+                    <Link
+                      key={color.name}
+                      href={`/productos/${producto.codigo}?color=${encodeURIComponent(
+                        color.name
+                      )}`}
+                      passHref
+                    >
+                      <div
+                        className={`w-6 h-6 rounded-full ${
+                          color.class
+                        } m-1 hover:shadow-md transition duration-300 cursor-pointer ${
+                          selectedColors[producto.id] === color.name
+                            ? "ring-2 ring-offset-2 ring-gray-500"
+                            : ""
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleColorSelect(producto.id, color.name);
+                        }}
+                        title={color.name}
+                      ></div>
+                    </Link>
                   ))}
                 </div>
               )}
