@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -108,9 +109,7 @@ const Destacados = () => {
             passHref
           >
             <div
-              className={`relative flex flex-col items-center w-64 p-4 transition-all duration-300 cursor-pointer ${
-                hoveredProduct === producto.id ? "bg-white shadow-lg" : ""
-              }`}
+              className="relative w-64 h-96 p-4 transition-all duration-300 cursor-pointer hover:bg-white hover:shadow-lg"
               onMouseEnter={() => setHoveredProduct(producto.id)}
               onMouseLeave={() => setHoveredProduct(null)}
             >
@@ -128,7 +127,7 @@ const Destacados = () => {
               </h3>
               <p className="text-gray-500 mb-4">Clave: {producto.codigo}</p>
               {hoveredProduct === producto.id && producto.colores && (
-                <div className="flex justify-center mb-4 flex-wrap">
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center flex-wrap">
                   {producto.colores.map((color) => (
                     <Link
                       key={color.name}
