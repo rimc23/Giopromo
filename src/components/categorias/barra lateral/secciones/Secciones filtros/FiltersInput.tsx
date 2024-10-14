@@ -18,9 +18,9 @@ export default function FiltersInput({ title, data, color = false }: Props) {
           <div className=" text-gray-700">
             <label htmlFor={item.id} className="flex gap-2 items-center">
             {
-                color ? <input type="radio" id={item.id} className={`appearance-none rounded-full border border-gray-300 w-4 h-4 bg-${item.nombre}-600 cursor-pointer`}/> : <input type="radio" id={item.id} className="appearance-none w-4 h-4 border border-gray-400 rounded-none cursor-pointer"/>
+                color ? <input type="radio" id={item.id} className={`appearance-none rounded-full border border-gray-300 w-4 h-4 ${item.nombre} cursor-pointer`}/> : <input type="radio" id={item.id} className="appearance-none w-4 h-4 border border-gray-400 rounded-none cursor-pointer"/>
             }
-            <span>{item.nombre}</span>
+            <span>{item.id}</span>
             </label>
           </div>
         ))}

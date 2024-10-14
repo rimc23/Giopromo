@@ -117,23 +117,23 @@ export const technique = [
 export const color = [
   {
     id: "negro",
-    nombre: "black",
+    nombre: "bg-black",
   },
   {
     id: "naranja",
-    nombre: "orange",
+    nombre: "bg-orange-500",
   },
   {
     id: "rojo",
-    nombre: "red",
+    nombre: "bg-red-500",
   },
   {
     id: "amarillo",
-    nombre: "yellow",
+    nombre: "bg-yellow-500",
   },
   {
     id: "verde",
-    nombre: "green",
+    nombre: "bg-green-500",
   },
 ];
 
@@ -142,7 +142,7 @@ interface Color {
   class: string;
 }
 
-interface Producto {
+export interface Producto {
   id: number;
   nombre: string;
   codigo: string;
@@ -151,6 +151,65 @@ interface Producto {
 }
 
 export const productosDestacados: Producto[] = [
+  {
+    id: 1,
+    nombre: "CILINDRO METÁLICO",
+    codigo: "BB7101",
+    imagen: "/images/CILINDRO DESTACADO.jpg",
+    colores: [
+      { name: "Negro", class: "bg-black" },
+      { name: "Gris", class: "bg-gray-500" },
+      { name: "Azul", class: "bg-blue-500" },
+      { name: "Rojo", class: "bg-red-500" },
+    ],
+  },
+  {
+    id: 2,
+    nombre: "BOLÍGRAFO PLÁSTICO",
+    codigo: "A2102",
+    imagen: "/images/BOLIGRAFO NARANJA.jpg",
+    colores: [
+      { name: "Amarillo", class: "bg-yellow-500" },
+      { name: "Azul", class: "bg-blue-500" },
+      { name: "Negro", class: "bg-black" },
+      { name: "Naranja", class: "bg-orange-500" },
+      { name: "Rosa", class: "bg-pink-500" },
+      { name: "Verde", class: "bg-green-500" },
+      { name: "Rojo", class: "bg-red-500" },
+    ],
+  },
+  {
+    id: 3,
+    nombre: "DIARIO 2023",
+    codigo: "AD2023",
+    imagen: "/images/Diaria 2023.jpeg",
+    colores: [
+      { name: "Marrón", class: "bg-amber-800" },
+      { name: "Gris", class: "bg-gray-300" },
+      { name: "Negro", class: "bg-black" },
+    ],
+  },
+  {
+    id: 4,
+    nombre: "Pluma con estuche",
+    imagen: "/images/A2425_2.jpg",
+    codigo: "A2425",
+  },
+  {
+    id: 5,
+    nombre: "Pluma con estuche HSBC",
+    imagen: "/images/A2539.jpg",
+    codigo: "A2539",
+  },
+  {
+    id: 6,
+    nombre: "Plumas multiples",
+    imagen: "/images/ESC4876.jpg",
+    codigo: "ESC4876",
+  },
+];
+
+export const productosDestacados2: Producto[] = [
   {
     id: 1,
     nombre: "CILINDRO METÁLICO",
