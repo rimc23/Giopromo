@@ -6,7 +6,7 @@ export default function Search() {
   const [isClose, setIsClose] = useState(true);
   const [wordSearch, setWordSearch] = useState("");
 
-  const onChangeSeachInput = (e: any) => {
+  const onChangeSeachInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWordSearch(e.target.value);
   };
   return (

@@ -19,8 +19,8 @@ export default function ProductCard({ item }: Props) {
       <img src={item.imagen} alt="" />
       {item.colores ? (
         <div className={`${onHover ? 'flex' : 'hidden' } flex justify-center gap-1 p-2 `}>
-          {item.colores.map((item) => (
-            <div className={`w-4 h-4 rounded-full border ${item.class}`}></div>
+          {item.colores.map((color, index) => (
+            <div key={index} className={`w-4 h-4 rounded-full border ${color.class}`}></div>
           ))}
         </div>
       ) : null}

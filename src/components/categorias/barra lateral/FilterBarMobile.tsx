@@ -5,7 +5,7 @@ import { MouseEventHandler } from "react";
 
 interface Props {
   isCloseBar: boolean;
-  closeBar: MouseEventHandler<any>;
+  closeBar: MouseEventHandler<HTMLDivElement>;
 }
 
 export default function FilterBarMobile({ isCloseBar, closeBar }: Props) {
