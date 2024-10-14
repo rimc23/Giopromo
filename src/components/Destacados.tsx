@@ -63,13 +63,6 @@ const Destacados = () => {
     "novedades" | "destacados" | "masVendidos"
   >("destacados");
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
-  const [selectedColors, setSelectedColors] = useState<{ [key: number]: string }>(
-    {}
-  );
-
-  const handleColorSelect = (productId: number, colorName: string) => {
-    setSelectedColors((prev) => ({ ...prev, [productId]: colorName }));
-  };
 
   return (
     <section className="my-12 max-w-7xl mx-auto px-4">
@@ -101,61 +94,48 @@ const Destacados = () => {
           </button>
         ))}
       </div>
-      <div className="flex justify-center items-stretch gap-8 flex-wrap">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {productosDestacados.map((producto) => (
-          <Link
-            href={`/productos/${producto.codigo}`}
+          <div
             key={producto.id}
-            passHref
+            className="bg-white shadow-md rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105"
+            onMouseEnter={() => setHoveredProduct(producto.id)}
+            onMouseLeave={() => setHoveredProduct(null)}
           >
-            <div
-              className="relative w-64 h-96 p-4 transition-all duration-300 cursor-pointer hover:bg-white hover:shadow-lg"
-              onMouseEnter={() => setHoveredProduct(producto.id)}
-              onMouseLeave={() => setHoveredProduct(null)}
-            >
-              <div className="mb-4 w-full h-64 relative">
-                <Image
-                  src={producto.imagen}
-                  alt={producto.nombre}
-                  layout="fill"
-                  objectFit="contain"
-                  className="rounded-lg"
-                />
-              </div>
-              <h3 className="font-bold text-lg text-center mb-1">
-                {producto.nombre}
-              </h3>
-              <p className="text-gray-500 mb-4">Clave: {producto.codigo}</p>
-              {hoveredProduct === producto.id && producto.colores && (
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center flex-wrap">
-                  {producto.colores.map((color) => (
-                    <Link
-                      key={color.name}
-                      href={`/productos/${producto.codigo}?color=${encodeURIComponent(
-                        color.name
-                      )}`}
-                      passHref
-                    >
-                      <div
-                        className={`w-6 h-6 rounded-full ${
-                          color.class
-                        } m-1 hover:shadow-md transition duration-300 cursor-pointer ${
-                          selectedColors[producto.id] === color.name
-                            ? "ring-2 ring-offset-2 ring-gray-500"
-                            : ""
-                        }`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleColorSelect(producto.id, color.name);
-                        }}
-                        title={color.name}
-                      ></div>
-                    </Link>
-                  ))}
+            <div className="relative aspect-square w-full">
+              <Image
+                src={producto.imagen}
+                alt={producto.nombre}
+                layout="fill"
+                objectFit="cover"
+                className="transition-opacity duration-300"
+              />
+              {hoveredProduct === producto.id && (
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
+                  <Link href={`/productos/${producto.codigo}`}>
+                    <button className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300 mb-4">
+                      VER PRODUCTO
+                    </button>
+                  </Link>
+                  {producto.colores && (
+                    <div className="flex flex-wrap justify-center">
+                      {producto.colores.map((color) => (
+                        <div
+                          key={color.name}
+                          className={`w-6 h-6 rounded-full ${color.class} m-1 border border-white`}
+                          title={color.name}
+                        ></div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
-          </Link>
+            <div className="p-4">
+              <h3 className="font-bold text-lg mb-2">{producto.nombre}</h3>
+              <p className="text-gray-600">Clave: {producto.codigo}</p>
+            </div>
+          </div>
         ))}
       </div>
     </section>

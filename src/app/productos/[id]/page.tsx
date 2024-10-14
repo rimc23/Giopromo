@@ -1,11 +1,10 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { productosDestacados } from "@/components/Destacados"; // Importación corregida
+import { productosDestacados } from "@/components/Destacados";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
 
 const ProductoDetalle = () => {
   const { id } = useParams();
