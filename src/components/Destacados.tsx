@@ -95,9 +95,7 @@ const Destacados = () => {
         {productosDestacados.map((producto) => (
           <div
             key={producto.id}
-            className={`relative flex flex-col items-center w-64 p-4 transition-all duration-300 ${
-              hoveredProduct === producto.id ? 'bg-white shadow-lg' : ''
-            }`}
+            className="relative flex flex-col items-center w-64 p-4 transition-all duration-300 h-[450px] bg-white hover:shadow-lg"
             onMouseEnter={() => setHoveredProduct(producto.id)}
             onMouseLeave={() => setHoveredProduct(null)}
           >
@@ -110,31 +108,31 @@ const Destacados = () => {
                 className="rounded-lg"
               />
             </div>
-            <h3 className="font-bold text-lg text-center mb-1">
+            <div className={`w-full flex flex-col items-center transition-opacity duration-300 ${hoveredProduct === producto.id ? 'opacity-100' : 'opacity-0'}`}>
+              {producto.colores && (
+                <div className="flex justify-center mb-2">
+                  {producto.colores.map((color, index) => (
+                    <span
+                      key={index}
+                      className={`w-4 h-4 rounded-full cursor-pointer ${color.class} mx-1`}
+                      title={color.name}
+                    ></span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <h3 className="font-bold text-lg text-gray-500 text-center mb-1">
               {producto.nombre}
             </h3>
             <p className="text-gray-500 mb-4">{producto.codigo}</p>
-            {hoveredProduct === producto.id && (
-              <>
-                {producto.colores && (
-                  <div className="flex justify-center mb-4">
-                    {producto.colores.map((color, index) => (
-                      <span
-                        key={index}
-                        className={`w-4 h-4 rounded-full ${color.class} mx-1`}
-                        title={color.name}
-                      ></span>
-                    ))}
-                  </div>
-                )}
-                <Link
-                  href={`/productos/${producto.codigo}`}
-                  className="absolute bottom-4 bg-cyan-400 text-white px-6 py-2 rounded hover:bg-cyan-500 transition duration-300"
-                >
-                  VER PRODUCTO
-                </Link>
-              </>
-            )}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+              <Link
+                href={`/productos/${producto.codigo}`}
+                className={`bg-cyan-400 text-white px-6 py-2 rounded hover:bg-cyan-500 transition duration-300 ${hoveredProduct === producto.id ? 'opacity-100' : 'opacity-0'}`}
+              >
+                VER PRODUCTO
+              </Link>
+            </div>
           </div>
         ))}
       </div>
